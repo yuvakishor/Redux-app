@@ -8,6 +8,13 @@ class Posts extends Component {
     componentWillMount(){
         this.props.fetchPosts();
     }
+    //update the state
+    // componentWillReceiveProps(nextProps){
+    //     if(nextProps.newPost){
+    //         this.props.posts.unshift(nextProps.newPost);
+    //     }
+
+    // }
     render() {
         const postItems=this.props.posts.map(post=>(
             <div key={post.id}>
@@ -25,9 +32,11 @@ class Posts extends Component {
 }
 Posts.PropType={
     fetchPosts:PropType.func.isRequired,
-    posts:PropType.array.isRequired
+    posts:PropType.array.isRequired,
+    // newPost:PropType.object
 }
 const mapStateToProps =state=>({
-    posts:state.posts.items
+    posts:state.posts.items,
+    // newPost:state.posts.item
 })
 export default connect(mapStateToProps,{fetchPosts})(Posts);
